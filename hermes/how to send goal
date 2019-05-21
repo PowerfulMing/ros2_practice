@@ -1,0 +1,1 @@
+ros2 service call /test/_action/send_goal universal_interface/StringTask_Goal "task_s: 1,0,0,0,0,0,1"

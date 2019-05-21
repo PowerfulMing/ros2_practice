@@ -1,0 +1,9 @@
+# Ignore all build files in every project
+build/
+
+# Ignore all QTCreator things
+*.user
+*.user.*
+
+# Ignore VSCode Stuff
+.vscode/

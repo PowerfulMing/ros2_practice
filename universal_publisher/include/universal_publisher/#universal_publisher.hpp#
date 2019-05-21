@@ -1,0 +1,45 @@
+#ifndef UNIVERSAL_RCL_TOPIC_H
+#define UNIVERSAL_RCL_TOPIC_H
+#include <chrono>
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
+
+using namespace std::chrono_literals;
+using namespace std;
+
+class UniversalPublisher
+{
+public:
+  UniversalPublisher(string node_name, string topic_name)
+  {
+    node_name_ = node_name;
+    topic_name_ = topic_name;
+    rclcpp::init(0, NULL);
+    node_ = rclcpp::Node::make_shared(node_name_);
+
+    publisher_ = node_->create_publisher<std_msgs::msg::String>(topic_name_);
+  }
+
+  void setup_message(string input_message)
+  {
+    input_message_ = input_message;
+  }
+  
+  void publish_message()
+  {
+    auto message = std_msgs::msg::String();
+    message.data = input_message_;
+    RCLCPP_INFO(node_->get_logger(), "Publishing: '%s'", message.data.c_str());
+    publisher_->publish(message);
+  }
+private:
+
+  string node_name_;
+  string topic_name_;
+  string input_message_;
+  rclcpp::Node::SharedPtr node_;
+  rclcpp::TimerBase::SharedPtr timer_;
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
+};
+
+#endif // UNIVERSAL_RCL_TOPIC_H
