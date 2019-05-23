@@ -11,10 +11,19 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 find_package(ament_cmake REQUIRED)
-find_package(universal_interface REQUIRED)
-find_package(example_interfaces REQUIRED)
-
 find_package(rclcpp REQUIRED)
+
+find_package(universal_interface REQUIRED)
+if(NOT universal_interface_FOUND)
+  message(WARNING "Failed to find UNIVERSAL_INTERFACE in Universal Service, skipping...")
+  return()
+endif()
+
+find_package(example_interfaces REQUIRED)
+if(NOT example_interfaces_FOUND)
+  message(WARNING "Failed to find UNIVERSAL_INTERFACE in Universal Service, skipping...")
+  return()
+endif()
 
 include_directories(include
             ${rclcpp_INCLUDE_DIRS}

@@ -39,32 +39,57 @@ find_package(rclcpp REQUIRED)
 find_package(Boost REQUIRED system filesystem thread REQUIRED)
 
 include_directories(include
+	    include/graph_lib
+	    include/path_planning_lib
+	    include/commu_lib
+	    include/common_lib
             ${rclcpp_INCLUDE_DIRS}
             ${rmw_implementation_INCLUDE_DIRS}
             ${Boost_INCLUDE_DIRS}
 )
 
-set(COM_LIB_SOURCE src/UniversalPublisher.cpp src/UniversalService.cpp src/Thumper.cpp src/Service.cpp)
-add_library(communication_lib ${COM_LIB_SOURCE})
+file(GLOB GRAPH_LIB_SOURCES "src/graph_lib/*.cpp" )
+file(GLOB GRAPH_LIB_HEADER "include/graph_lib/*.h" )
+file(GLOB PATHPLANNING_LIB_SOURCES "src/path_planning_lib/*.cpp" )
+file(GLOB PATHPLANNING_LIB_HEADER "include/path_planning_lib/*.h" )
+file(GLOB COMMU_LIB_SOURCES "src/commu_lib/*.cpp" )
+file(GLOB COMMU_LIB_HEADER "include/commu_lib/*.h" )
+
+
+add_library(graph_lib ${GRAPH_LIB_SOURCES} ${GRAPH_LIB_HEADER})
+add_library(pathplanning_lib ${PATHPLANNING_LIB_HEADER} ${PATHPLANNING_LIB_SOURCES})
+add_library(commu_lib ${COMMU_LIB_HEADER} ${COMMU_LIB_SOURCES})
+#add_library(common_lib ${COMMON_LIB_HEADER})
 
 #set(GRAPH_LIB_SOURCE src/BasicElement.cpp src/Edge.cpp src/Graph.cpp src/Location.cpp src/Vertex.cpp)
 #add_library(graph_lib ${GRAPH_LIB_SOURCE})
 
-ament_target_dependencies(communication_lib
+ament_target_dependencies(commu_lib
   rclcpp
   universal_interface
 )
 
-add_executable(path_planning_server_node src/main.cpp src/PathPlanningServer.cpp src/path.cpp)
+# JSON parser
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(JSONCPP jsoncpp)
+link_libraries(${JSONCPP_LIBRARIES})
+
+target_link_libraries(pathplanning_lib
+		graph_lib
+		commu_lib
+  		"${rclcpp_LIBRARIES}"
+  		"${rclcpp_action_LIBRARIES}"
+  		"${rmw_implementation_LIBRARIES}"
+  		"${JSONCPP_LIBRARIES}"
+  		"${boost_LIBRARIES}"
+  		debug "${progdll_dbg_libs}"
+  		optimized "${progdll_opt_libs}"
+  		boost_thread
+  		boost_system
+)
+add_executable(path_planning_server_node src/main.cpp)
 target_link_libraries(path_planning_server_node
-                      communication_lib
-#		      graph_lib
-                      ${rclcpp_LIBRARIES}
-                      ${rmw_implementation_LIBRARIES}
-                      optimized "${progdll_opt_libs}"
-                      boost_thread
-                      boost_system
-                      jsoncpp
+                      pathplanning_lib
 )
 
 install(TARGETS
