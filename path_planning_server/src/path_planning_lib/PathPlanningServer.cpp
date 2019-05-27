@@ -127,13 +127,15 @@ void PathPlanningServer::AStar(unsigned long start_index, unsigned long end_inde
             return;
         }
 
-        // Lookup the current vertex's sibling and calculate the cost
+        // Lookup the current vertex's sibling and calculate the cost of each sibling
         for(unsigned int i=0; i<m_sibling_.sibling_table_.at(current_index).size(); i++)
         {
             unsigned long sibling_id = boost::tuples::get<0>(m_sibling_.sibling_table_.at(current_index).at(i));
+            // If the vertex already in Close List, skip it
             std::vector<unsigned long>::iterator it = std::find(close_list.begin(), close_list.end(), sibling_id);
             if(it!=close_list.end())
                 continue;
+
             G = m_graph_.return_dist(start_index, sibling_id);
             H = m_graph_.return_dist(sibling_id, end_index);
             m_graph_.vertex_array_->at(sibling_id)->cost = G+H;
