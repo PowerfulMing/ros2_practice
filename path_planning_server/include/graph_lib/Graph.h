@@ -77,6 +77,15 @@ public:
     }
     return false;
   }
+  double return_dist(unsigned long Va_id, unsigned long Vb_id)
+  {
+    double x1 = vertex_array_->at(Va_id)->location().x;
+    double x2 = vertex_array_->at(Vb_id)->location().x;
+    double y1 = vertex_array_->at(Va_id)->location().y;
+    double y2 = vertex_array_->at(Vb_id)->location().y;
+    return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
+  }
+
   void GeneratePathGraph();
   double distanceBetweenTwoPoint(double, double, double, double);
   virtual string to_string();

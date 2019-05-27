@@ -18,6 +18,7 @@ PathPlanningServer::PathPlanningServer()
     generate_graph(6, 6);
     for(int i=0;i<m_sibling_.sibling_table_.size();i++)
         std::cout << "vertex " << i << " has " << m_sibling_.sibling_table_.at(i).size() << " siblings" << std::endl;
+    AStar(0,35);
 }
 
 void PathPlanningServer::generate_graph(int x, int y)
@@ -43,7 +44,7 @@ void PathPlanningServer::generate_graph(int x, int y)
                continue;
             }
             double dist = calc_dist(m_graph_.vertex_array_->at(m)->location(),m_graph_.vertex_array_->at(n)->location());
-            if(dist <= 100)
+            if(dist <= 142)
             {
                 if(!m_graph_.if_connected(m,n))
                 {
@@ -86,62 +87,61 @@ void PathPlanningServer::link_vetex(unsigned int id, unsigned int from, unsigned
 
 void PathPlanningServer::AStar(unsigned long start_index, unsigned long end_index)
 {
-//    std::cout << "Calculating path... " << std::endl;
+    std::cout << "Calculating path... " << std::endl;
 
-//    path->clear();
-//    std::vector<unsigned long> close_list;
-//    std::priority_queue< std::pair<double, unsigned long>,
-//                            std::vector<std::pair<double, unsigned long>>,
-//                            std::greater<std::pair<double, unsigned long>> >open_list;
-//    double G,H;
-//    unsigned long current_index = start_index;
+    path->clear();
+    std::vector<unsigned long> close_list;
+    std::priority_queue< std::pair<double, unsigned long>,
+                            std::vector<std::pair<double, unsigned long>>,
+                            std::greater<std::pair<double, unsigned long>> >open_list;
+    double G,H;
+    unsigned long current_index = start_index;
 
-//    open_list.push(std::make_pair(0,current_index));
+    open_list.push(std::make_pair(0,current_index));
 
-//    while(!open_list.empty())
-//    {
-//        current_index = open_list.top().second;
-//        open_list.pop();
-//        close_list.push_back(current_index);
+    while(!open_list.empty())
+    {
+        current_index = open_list.top().second;
+        open_list.pop();
+        close_list.push_back(current_index);
 
-//        // Reached Goal! Lookback Parent and Find the Path
-//        if(current_index == end_index)
-//        {
-//            int tmp_id = current_index;
-//            path->push_back(tmp_id);
-//            Path* new_path = new Path();
-//            new_path->addNewVertex(tmp_id);
-//            while(tmp_id!=start_index)
-//            {
-//                m_graph_.vertex_array_;
-//                tmp_id = m_graph_.vertex_array_->at(tmp_id)->parent;
-//                path->push_back(tmp_id);
-//                new_path->addNewVertex(tmp_id);
-//            }
+        // Reached Goal! Lookback Parent and Find the Path
+        if(current_index == end_index)
+        {
+            int tmp_id = current_index;
+            path->push_back(tmp_id);
+            Path* new_path = new Path();
+            new_path->addNewVertex(tmp_id);
+            while(tmp_id!=start_index)
+            {
+                m_graph_.vertex_array_;
+                tmp_id = m_graph_.vertex_array_->at(tmp_id)->parent;
+                path->push_back(tmp_id);
+                new_path->addNewVertex(tmp_id);
+            }
 
-//            std::cout << "The Path is: " << std::endl;
-//            for(int i=path->size()-1; i>=0;i--)
-//                std::cout << (*path)[i] << ", ";
-//            std::cout << std::endl;
-//            return;
-//        }
+            std::cout << "The Path is: " << std::endl;
+            for(int i=path->size()-1; i>=0;i--)
+                std::cout << (*path)[i] << ", ";
+            std::cout << std::endl;
+            return;
+        }
 
-//        // Lookup the current vertex's sibling and calculate the cost
-//        for(unsigned int i=0; i<m_sibling_.sibling_table_.at()
-//        for(unsigned long i=0;i<current_vertex.edge_list_.size();i++)
-//        {
-//            unsigned long sibling_id = current_vertex.edge_list_[i].to_node_id;
-//            std::vector<unsigned long>::iterator it = std::find(close_list.begin(), close_list.end(), sibling_id);
-//            if(it!=close_list.end())
-//                continue;
-//            G = m_graph.return_dist(start_index, sibling_id);
-//            H = m_graph.return_dist(sibling_id, end_index);
-//            m_graph.vertex_array_[sibling_id].cost = G+H;
-//            m_graph.vertex_array_[sibling_id].parent = current_index;
-//            open_list.push(std::make_pair(m_graph.vertex_array_[sibling_id].cost, sibling_id));
-//        }
-//    }
-//    std::cout << "Nothing find!!!" << std::endl;
+        // Lookup the current vertex's sibling and calculate the cost
+        for(unsigned int i=0; i<m_sibling_.sibling_table_.at(current_index).size(); i++)
+        {
+            unsigned long sibling_id = boost::tuples::get<0>(m_sibling_.sibling_table_.at(current_index).at(i));
+            std::vector<unsigned long>::iterator it = std::find(close_list.begin(), close_list.end(), sibling_id);
+            if(it!=close_list.end())
+                continue;
+            G = m_graph_.return_dist(start_index, sibling_id);
+            H = m_graph_.return_dist(sibling_id, end_index);
+            m_graph_.vertex_array_->at(sibling_id)->cost = G+H;
+            m_graph_.vertex_array_->at(sibling_id)->parent = current_index;
+            open_list.push(std::make_pair(m_graph_.vertex_array_->at(sibling_id)->cost, sibling_id));
+        }
+    }
+    std::cout << "Nothing find!!!" << std::endl;
 }
 
 bool PathPlanningServer::parse_json()

@@ -19,6 +19,7 @@ class Vertex : public RoutingElement
     int occupied_index_ = -1;
     bool on_path_ = false;
     unsigned long parent;
+    double cost;
     Vertex();
     Vertex(Location);
     Vertex(const Vertex *);

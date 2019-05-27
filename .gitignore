@@ -1,7 +1,6 @@
 # Ignore all build files in every project
 build/
 build-*/
-build-path_planning_server-Desktop-Default/
 
 # Ignore all QTCreator things
 *.user
