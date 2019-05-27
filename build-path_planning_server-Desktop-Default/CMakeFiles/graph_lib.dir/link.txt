@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgraph_lib.a  CMakeFiles/graph_lib.dir/src/graph_lib/BasicElement.cpp.o CMakeFiles/graph_lib.dir/src/graph_lib/Basicmapelement.cpp.o CMakeFiles/graph_lib.dir/src/graph_lib/Edge.cpp.o CMakeFiles/graph_lib.dir/src/graph_lib/Graph.cpp.o CMakeFiles/graph_lib.dir/src/graph_lib/Location.cpp.o CMakeFiles/graph_lib.dir/src/graph_lib/RoutingElement.cpp.o CMakeFiles/graph_lib.dir/src/graph_lib/SiblingTree.cpp.o CMakeFiles/graph_lib.dir/src/graph_lib/Track.cpp.o CMakeFiles/graph_lib.dir/src/graph_lib/Vertex.cpp.o
-/usr/bin/ranlib libgraph_lib.a

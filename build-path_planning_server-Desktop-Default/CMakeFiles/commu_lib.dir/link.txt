@@ -1,2 +1,0 @@
-/usr/bin/ar qc libcommu_lib.a  CMakeFiles/commu_lib.dir/src/commu_lib/Client.cpp.o CMakeFiles/commu_lib.dir/src/commu_lib/DataClient.cpp.o CMakeFiles/commu_lib.dir/src/commu_lib/GraphClient.cpp.o CMakeFiles/commu_lib.dir/src/commu_lib/Service.cpp.o CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.o CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.o CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.o CMakeFiles/commu_lib.dir/src/commu_lib/UniversalService.cpp.o
-/usr/bin/ranlib libcommu_lib.a
