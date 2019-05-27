@@ -80,6 +80,13 @@ std::string SiblingTree::to_string()
     return root.toStyledString();
 }
 
+
+void SiblingTree::setAGVType(std::string agv_type)
+{
+    AGV_Type_ = agv_type;
+}
+
+
 bool SiblingTree::parse_string(std::string input_string)
 {
     Json::Value root;

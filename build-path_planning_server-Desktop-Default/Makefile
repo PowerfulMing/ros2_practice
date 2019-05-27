@@ -704,6 +704,33 @@ src/commu_lib/Service.cpp.s:
 	$(MAKE) -f CMakeFiles/commu_lib.dir/build.make CMakeFiles/commu_lib.dir/src/commu_lib/Service.cpp.s
 .PHONY : src/commu_lib/Service.cpp.s
 
+src/commu_lib/SiblingClient.o: src/commu_lib/SiblingClient.cpp.o
+
+.PHONY : src/commu_lib/SiblingClient.o
+
+# target to build an object file
+src/commu_lib/SiblingClient.cpp.o:
+	$(MAKE) -f CMakeFiles/commu_lib.dir/build.make CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o
+.PHONY : src/commu_lib/SiblingClient.cpp.o
+
+src/commu_lib/SiblingClient.i: src/commu_lib/SiblingClient.cpp.i
+
+.PHONY : src/commu_lib/SiblingClient.i
+
+# target to preprocess a source file
+src/commu_lib/SiblingClient.cpp.i:
+	$(MAKE) -f CMakeFiles/commu_lib.dir/build.make CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.i
+.PHONY : src/commu_lib/SiblingClient.cpp.i
+
+src/commu_lib/SiblingClient.s: src/commu_lib/SiblingClient.cpp.s
+
+.PHONY : src/commu_lib/SiblingClient.s
+
+# target to generate assembly for a file
+src/commu_lib/SiblingClient.cpp.s:
+	$(MAKE) -f CMakeFiles/commu_lib.dir/build.make CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.s
+.PHONY : src/commu_lib/SiblingClient.cpp.s
+
 src/commu_lib/Thumper.o: src/commu_lib/Thumper.cpp.o
 
 .PHONY : src/commu_lib/Thumper.o
@@ -1194,6 +1221,9 @@ help:
 	@echo "... src/commu_lib/Service.o"
 	@echo "... src/commu_lib/Service.i"
 	@echo "... src/commu_lib/Service.s"
+	@echo "... src/commu_lib/SiblingClient.o"
+	@echo "... src/commu_lib/SiblingClient.i"
+	@echo "... src/commu_lib/SiblingClient.s"
 	@echo "... src/commu_lib/Thumper.o"
 	@echo "... src/commu_lib/Thumper.i"
 	@echo "... src/commu_lib/Thumper.s"

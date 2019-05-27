@@ -153,9 +153,33 @@ CMakeFiles/commu_lib.dir/src/commu_lib/Service.cpp.o.provides: CMakeFiles/commu_
 CMakeFiles/commu_lib.dir/src/commu_lib/Service.cpp.o.provides.build: CMakeFiles/commu_lib.dir/src/commu_lib/Service.cpp.o
 
 
+CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o: CMakeFiles/commu_lib.dir/flags.make
+CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o: /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/SiblingClient.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lui/rclcpp_ws/src/ros2_practice/build-path_planning_server-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o -c /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/SiblingClient.cpp
+
+CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/SiblingClient.cpp > CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.i
+
+CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/SiblingClient.cpp -o CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.s
+
+CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o.requires:
+
+.PHONY : CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o.requires
+
+CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o.provides: CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o.requires
+	$(MAKE) -f CMakeFiles/commu_lib.dir/build.make CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o.provides.build
+.PHONY : CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o.provides
+
+CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o.provides.build: CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o
+
+
 CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.o: CMakeFiles/commu_lib.dir/flags.make
 CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.o: /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/Thumper.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lui/rclcpp_ws/src/ros2_practice/build-path_planning_server-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lui/rclcpp_ws/src/ros2_practice/build-path_planning_server-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.o -c /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/Thumper.cpp
 
 CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.i: cmake_force
@@ -179,7 +203,7 @@ CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.o.provides.build: CMakeFiles/
 
 CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.o: CMakeFiles/commu_lib.dir/flags.make
 CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.o: /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/UniversalClient.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lui/rclcpp_ws/src/ros2_practice/build-path_planning_server-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lui/rclcpp_ws/src/ros2_practice/build-path_planning_server-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.o -c /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/UniversalClient.cpp
 
 CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.i: cmake_force
@@ -203,7 +227,7 @@ CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.o.provides.build: CMa
 
 CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.o: CMakeFiles/commu_lib.dir/flags.make
 CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.o: /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/UniversalPublisher.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lui/rclcpp_ws/src/ros2_practice/build-path_planning_server-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lui/rclcpp_ws/src/ros2_practice/build-path_planning_server-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.o -c /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/UniversalPublisher.cpp
 
 CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.i: cmake_force
@@ -227,7 +251,7 @@ CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.o.provides.build: 
 
 CMakeFiles/commu_lib.dir/src/commu_lib/UniversalService.cpp.o: CMakeFiles/commu_lib.dir/flags.make
 CMakeFiles/commu_lib.dir/src/commu_lib/UniversalService.cpp.o: /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/UniversalService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lui/rclcpp_ws/src/ros2_practice/build-path_planning_server-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/commu_lib.dir/src/commu_lib/UniversalService.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lui/rclcpp_ws/src/ros2_practice/build-path_planning_server-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/commu_lib.dir/src/commu_lib/UniversalService.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/commu_lib.dir/src/commu_lib/UniversalService.cpp.o -c /home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/UniversalService.cpp
 
 CMakeFiles/commu_lib.dir/src/commu_lib/UniversalService.cpp.i: cmake_force
@@ -255,6 +279,7 @@ commu_lib_OBJECTS = \
 "CMakeFiles/commu_lib.dir/src/commu_lib/DataClient.cpp.o" \
 "CMakeFiles/commu_lib.dir/src/commu_lib/GraphClient.cpp.o" \
 "CMakeFiles/commu_lib.dir/src/commu_lib/Service.cpp.o" \
+"CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o" \
 "CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.o" \
 "CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.o" \
 "CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.o" \
@@ -267,13 +292,14 @@ libcommu_lib.a: CMakeFiles/commu_lib.dir/src/commu_lib/Client.cpp.o
 libcommu_lib.a: CMakeFiles/commu_lib.dir/src/commu_lib/DataClient.cpp.o
 libcommu_lib.a: CMakeFiles/commu_lib.dir/src/commu_lib/GraphClient.cpp.o
 libcommu_lib.a: CMakeFiles/commu_lib.dir/src/commu_lib/Service.cpp.o
+libcommu_lib.a: CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o
 libcommu_lib.a: CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.o
 libcommu_lib.a: CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.o
 libcommu_lib.a: CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.o
 libcommu_lib.a: CMakeFiles/commu_lib.dir/src/commu_lib/UniversalService.cpp.o
 libcommu_lib.a: CMakeFiles/commu_lib.dir/build.make
 libcommu_lib.a: CMakeFiles/commu_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lui/rclcpp_ws/src/ros2_practice/build-path_planning_server-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libcommu_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lui/rclcpp_ws/src/ros2_practice/build-path_planning_server-Desktop-Default/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library libcommu_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/commu_lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/commu_lib.dir/link.txt --verbose=$(VERBOSE)
 
@@ -286,6 +312,7 @@ CMakeFiles/commu_lib.dir/requires: CMakeFiles/commu_lib.dir/src/commu_lib/Client
 CMakeFiles/commu_lib.dir/requires: CMakeFiles/commu_lib.dir/src/commu_lib/DataClient.cpp.o.requires
 CMakeFiles/commu_lib.dir/requires: CMakeFiles/commu_lib.dir/src/commu_lib/GraphClient.cpp.o.requires
 CMakeFiles/commu_lib.dir/requires: CMakeFiles/commu_lib.dir/src/commu_lib/Service.cpp.o.requires
+CMakeFiles/commu_lib.dir/requires: CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o.requires
 CMakeFiles/commu_lib.dir/requires: CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.o.requires
 CMakeFiles/commu_lib.dir/requires: CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.o.requires
 CMakeFiles/commu_lib.dir/requires: CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.o.requires

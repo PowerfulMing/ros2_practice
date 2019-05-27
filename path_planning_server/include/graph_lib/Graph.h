@@ -37,15 +37,45 @@ public:
   bool parse_track_string(string);
   bool parse_track_file(const char*);
   bool overlapping(Location,Location);
-  void add_vertex(Vertex *v)
+  void add_vertex(Vertex *v, long unsigned int id= 0)
   {
-    v->set_vertex_index(vertex_array_->size());
+    if(id==0)
+    {
+        v->set_vertex_index(vertex_array_->size());
+    }else{
+        v->set_vertex_index(id);
+    }
     vertex_array_->push_back(v);
   }
-  void add_edge(Edge *e)
+  void add_edge(Edge *e, long unsigned int id= 0)
   {
-    e->set_edge_index(edge_array_->size());
-    edge_array_->push_back(e);
+      if(id==0)
+      {
+          e->set_edge_index(edge_array_->size());
+      }else{
+          e->set_edge_index(id);
+      }
+      edge_array_->push_back(e);
+  }
+
+  bool if_connected(long unsigned int a, unsigned int b)
+  {
+    unsigned int EdgeSize = edge_array_->size();
+    if(EdgeSize==0)
+    {
+        // No any connection
+        return false;
+    }
+    for(int i=0; i<EdgeSize; i++)
+    {
+      if(edge_array_->at(i)->vertex_start_index_ == a)
+        if(edge_array_->at(i)->vertex_end_index_ == b)
+          return true;
+      if(edge_array_->at(i)->vertex_start_index_ == b)
+        if(edge_array_->at(i)->vertex_end_index_ == a)
+          return true;
+    }
+    return false;
   }
   void GeneratePathGraph();
   double distanceBetweenTwoPoint(double, double, double, double);

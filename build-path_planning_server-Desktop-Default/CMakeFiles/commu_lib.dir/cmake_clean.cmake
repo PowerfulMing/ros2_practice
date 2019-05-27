@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/commu_lib.dir/src/commu_lib/DataClient.cpp.o"
   "CMakeFiles/commu_lib.dir/src/commu_lib/GraphClient.cpp.o"
   "CMakeFiles/commu_lib.dir/src/commu_lib/Service.cpp.o"
+  "CMakeFiles/commu_lib.dir/src/commu_lib/SiblingClient.cpp.o"
   "CMakeFiles/commu_lib.dir/src/commu_lib/Thumper.cpp.o"
   "CMakeFiles/commu_lib.dir/src/commu_lib/UniversalClient.cpp.o"
   "CMakeFiles/commu_lib.dir/src/commu_lib/UniversalPublisher.cpp.o"

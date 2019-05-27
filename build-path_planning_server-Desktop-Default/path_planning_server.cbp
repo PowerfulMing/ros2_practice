@@ -384,6 +384,9 @@
 		<Unit filename="/home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/include/commu_lib/Shatter.h">
 			<Option target="commu_lib"/>
 		</Unit>
+		<Unit filename="/home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/include/commu_lib/SiblingClient.h">
+			<Option target="commu_lib"/>
+		</Unit>
 		<Unit filename="/home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/include/commu_lib/Status.h">
 			<Option target="commu_lib"/>
 		</Unit>
@@ -442,6 +445,9 @@
 			<Option target="commu_lib"/>
 		</Unit>
 		<Unit filename="/home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/Service.cpp">
+			<Option target="commu_lib"/>
+		</Unit>
+		<Unit filename="/home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/SiblingClient.cpp">
 			<Option target="commu_lib"/>
 		</Unit>
 		<Unit filename="/home/lui/rclcpp_ws/src/ros2_practice/path_planning_server/src/commu_lib/Thumper.cpp">
