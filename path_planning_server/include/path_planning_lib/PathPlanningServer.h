@@ -16,61 +16,14 @@
 #include "SiblingTree.h"
 #include "SiblingClient.h"
 
-//struct location
-//{
-//    location(int x, int y):x(x),y(y){}
-//    int x;
-//    int y;
-//};
-
-//struct edge
-//{
-//    edge(int to_node_id, double angle):to_node_id(to_node_id), angle(angle){}
-//    int to_node_id;
-//    double angle;
-//};
-
-//typedef std::vector<edge> edge_list;
-//typedef std::vector<edge_list> sibling_tree_type;
-
-//struct vertex
-//{
-//    vertex(unsigned long id, edge_list edge_list_, location location_):id_(id), edge_list_(edge_list_),location_(location_){}
-//    unsigned long id_;
-//    unsigned long parent;
-//    edge_list edge_list_;
-//    location location_;
-//    double G, H;
-//    double cost;
-//    int occupied;
-//};
-
-//class Graph
-//{
-//public:
-//    Graph(){}
-//    ~Graph(){}
-//    double return_dist(unsigned long Va_id, unsigned long Vb_id)
-//    {
-//        int x1 = vertex_array_[Va_id].location_.x;
-//        int x2 = vertex_array_[Vb_id].location_.x;
-//        int y1 = vertex_array_[Va_id].location_.y;
-//        int y2 = vertex_array_[Vb_id].location_.y;
-//        return sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
-//    }
-//    std::vector<vertex> vertex_array_;
-
-//private:
-//};
-
-//typedef std::vector<edge_type> vertex_type;
-//typedef std::vector<vertex_type> sibling_tree_type;
-
 class PathPlanningServer : public Service
 {
 public:
     PathPlanningServer();
     ~PathPlanningServer(){}
+    void init() { Service::init(); }
+    void run() { Service::run(); }
+    void stop() { Service::stop(); }
     bool parse_request();
     std::string handle_request();
 

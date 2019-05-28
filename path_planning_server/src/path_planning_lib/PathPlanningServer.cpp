@@ -16,9 +16,8 @@ PathPlanningServer::PathPlanningServer()
     m_edge_ = new Edge;
     // Create 6 * 6 graph
     generate_graph(6, 6);
-    for(int i=0;i<m_sibling_.sibling_table_.size();i++)
-        std::cout << "vertex " << i << " has " << m_sibling_.sibling_table_.at(i).size() << " siblings" << std::endl;
-    AStar(0,35);
+//    for(int i=0;i<m_sibling_.sibling_table_.size();i++)
+//        std::cout << "vertex " << i << " has " << m_sibling_.sibling_table_.at(i).size() << " siblings" << std::endl;
 }
 
 void PathPlanningServer::generate_graph(int x, int y)
@@ -51,19 +50,19 @@ void PathPlanningServer::generate_graph(int x, int y)
                     link_vetex(edge_id, m, n);
                     edge_id++;
                 }else{
-                    std::cout << "Vertex " << m << " and Vertex " << n << " already connected!" << std::endl;
+//                    std::cout << "Vertex " << m << " and Vertex " << n << " already connected!" << std::endl;
                 }
             }else{
 //                std::cout << "Vertex " << m << " and Vertex " << n << " are too far!" << std::endl;
             }
         }
     }
-    std::cout << "How many Edge: " << edge_id << std::endl;
-    for(int i=0; i<edge_id; i++)
-    {
-        std::cout << "Link from vertex " << m_graph_.edge_array_->at(i)->vertex_start_index_
-                  << " to vertex " << m_graph_.edge_array_->at(i)->vertex_end_index_ << std::endl;
-    }
+//    std::cout << "How many Edge: " << edge_id << std::endl;
+//    for(int i=0; i<edge_id; i++)
+//    {
+//        std::cout << "Link from vertex " << m_graph_.edge_array_->at(i)->vertex_start_index_
+//                  << " to vertex " << m_graph_.edge_array_->at(i)->vertex_end_index_ << std::endl;
+//    }
 
     m_sibling_ = SiblingTree(&m_graph_);
     m_sibling_.setAGVType("AMR");

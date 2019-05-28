@@ -14,6 +14,7 @@ public:
     Service();
     ~Service();
 
+protected:
     bool do_something(std::string str_req,
                       std::string *str_rep)
     {
@@ -42,7 +43,6 @@ public:
     virtual void init();
     virtual void run();
     virtual void stop();
-protected:
 
     std::string mas_request_;
     std::string mas_response_;

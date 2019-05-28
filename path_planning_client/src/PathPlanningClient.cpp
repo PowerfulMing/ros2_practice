@@ -5,8 +5,8 @@ void PathPlanningClient::create_request(void)
         Json::Value data_vec(Json::arrayValue);
         Json::Value data;
         data["typename"] = "AMR";
-        data["from"] = 0;
-        data["to"] = 5;
+        data["from"] = to_id_;
+        data["to"] = from_id_;
         data_vec.append(data);
 
         Json::Value MultiAgentSystemElementsVec(Json::arrayValue);

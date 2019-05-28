@@ -10,10 +10,12 @@ int main()
     server->set_service_name("PathPlanningService");
     server->init();
     server->run();
-    while(true)
-    {
-//        cout << "hello world!" << endl;
-        std::this_thread::sleep_for(std::chrono::microseconds(100000));
-    }
+    getchar();
+    server->stop();
+//    while(true)
+//    {
+////        cout << "hello world!" << endl;
+//        std::this_thread::sleep_for(std::chrono::microseconds(100000));
+//    }
     return 0;
 }
