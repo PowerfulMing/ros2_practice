@@ -1,16 +1,18 @@
 #include "universal_actionlib/universal_actionlib_server.h"
 #include <iterator> // for ostream_iterator
 
-class TestActionlibServer:public UniversalActionlibServer
+using namespace std;
+
+class TestActionServer:public UniversalActionServer
 {
 public:
-    TestActionlibServer(string node_name, string action_name): UniversalActionlibServer(node_name, action_name)
+    TestActionServer(string node_name, string action_name): UniversalActionServer(node_name, action_name)
     {
       node_name_ = node_name;
       action_name_ = action_name;
-      std::cout << "TestActionlibServer Constructor!" << std::endl;
+      std::cout << "TestActionServer Constructor!" << std::endl;
     }
-    ~TestActionlibServer(){}
+    ~TestActionServer(){}
 
     bool accept_goal(string goal)
     {
@@ -62,13 +64,13 @@ private:
 int main(int argc, char ** argv)
 {
   rclcpp::init(argc, argv);
-  UniversalActionlibServer *uni_actionlib_server_ptr;
-  TestActionlibServer test_actionlib_server("test_action_server_node", "Fibonacci");
-  uni_actionlib_server_ptr = &test_actionlib_server;
+  UniversalActionServer *uni_actionserver_ptr;
+  TestActionServer test_actionlib_server("test_action_server_node", "Fibonacci");
+  uni_actionserver_ptr = &test_actionlib_server;
   // test_actionlib_server.init();
   // test_actionlib_server.call_spin();
-  uni_actionlib_server_ptr->init();
-  uni_actionlib_server_ptr->call_spin();
+  // uni_actionserver_ptr->init();
+  // uni_actionserver_ptr->call_spin();
 
   rclcpp::shutdown();
   return 0;

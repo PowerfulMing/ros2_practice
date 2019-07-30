@@ -18,7 +18,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_action REQUIRED)
-find_package(rosidl_actions REQUIRED)
 find_package(rmw REQUIRED)
 find_package(rmw_implementation REQUIRED)
 find_package(std_msgs REQUIRED)
@@ -63,7 +62,6 @@ find_ros1_package(geometry_msgs)
 include_directories(include
  ${rclcpp_INCLUDE_DIRS}
  ${rclcpp_action_INCLUDE_DIRS}
- ${rosidl_actions_INCLUDE_DIRS}
  ${catkin_INCLUDE_DIRS}
  ${std_msgs_INCLUDE_DIRS}
  ${Qt5Core_INCLUDE_DIRS}
@@ -76,7 +74,6 @@ include_directories(include
 ament_target_dependencies(${PROJECT_NAME}_lib
  rclcpp
  rclcpp_action
- rosidl_actions
  std_msgs
  rmw_implementation
  ros1_roscpp
@@ -108,7 +105,5 @@ install(TARGETS
   ${PROJECT_NAME}_node
   DESTINATION lib/${PROJECT_NAME}
 )
-
-# ament_export_dependencies(rosidl_default_runtime)
 
 ament_package()

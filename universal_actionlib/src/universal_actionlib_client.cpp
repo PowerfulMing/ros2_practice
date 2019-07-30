@@ -2,129 +2,143 @@
 
 UniversalActionClient::UniversalActionClient()
 {
-    // timeout_interval_us_ = std::chrono::microseconds(100);
+    set_timeout_unit(TimeOutUnit::sec);
+    set_timeout_interval_ms(1000);
+    //timeout_interval_us_ = std::chrono::microseconds(100);
 }
-UniversalActionClient::UniversalActionClient(std::string node_name, std::string task_name)
+UniversalActionClient::UniversalActionClient(std::string nodeName, std::string actionName)
 {
-    node_name_ = node_name;
-    task_name_ = task_name;
+    node_name_ = nodeName;
+    action_name_ = actionName;
+    set_timeout_unit(TimeOutUnit::sec);
+    set_timeout_interval_ms(1000);
     // timeout_interval_us_ = std::chrono::microseconds(100);
 }
 UniversalActionClient::~UniversalActionClient(void)
 {
-    spinGoalThread.join();
+    action_client_.reset();
+    node_.reset();
     rclcpp::shutdown();
 }
 
 void UniversalActionClient::init(void)
 {
-    if(!rclcpp::is_initialized())
-        rclcpp::init(0, nullptr);
+    if (!rclcpp::is_initialized())
+    {
+        rclcpp::init(0, NULL);
+    }
     node_ = rclcpp::Node::make_shared(node_name_);
-    goal_accept_ = false;
     try
     {
-        action_client_ = rclcpp_action::create_client<StringTask>(node_, task_name_);
-        if (!action_client_->wait_for_action_server(std::chrono::seconds(3)))
-        {
-            RCLCPP_ERROR(node_->get_logger(), "Action server not available after waiting");
-        }
+        action_client_ = rclcpp_action::create_client<StringTask>(
+            node_,
+            action_name_);
     }
     catch (rclcpp::exceptions::InvalidServiceNameError err)
     {
         RCLCPP_ERROR(node_->get_logger(), err.error_msg);
     }
 }
-
 void UniversalActionClient::reboot(void)
 {
-    action_client_.reset();
-    node_.reset();
-    rclcpp::shutdown();
+    shutdown();
     if (rclcpp::ok())
     {
         init();
     }
 }
-
-void UniversalActionClient::feedback_callback(rclcpp_action::ClientGoalHandle<StringTask>::SharedPtr,
-  const std::shared_ptr<const StringTask::Feedback> feedback)
+void UniversalActionClient::shutdown(void)
 {
-    feedback_ = feedback->feedback_s.c_str();
-    RCLCPP_INFO(node_->get_logger(), "---> FEEDBACK: %s", feedback->feedback_s.c_str());
+    action_client_.reset();
+    node_.reset();
+    rclcpp::shutdown();
 }
-
-void UniversalActionClient::spin_goal_handle()
+bool UniversalActionClient::send_request_with_call_back(std::string request_string) //, const boost::function<void(std::string)> &func)
 {
-    if (rclcpp::spin_until_future_complete(node_, goal_handle_future) != rclcpp::executor::FutureReturnCode::SUCCESS)
-    {
-        RCLCPP_ERROR(node_->get_logger(), "send goal call failed :(");
-        goal_accept_ = false;
-        return;
-    }
-    RCLCPP_INFO(node_->get_logger(), "After Sending goal");
-    goal_handle = goal_handle_future.get();
-    RCLCPP_INFO(node_->get_logger(), "After get");
 
-    if (!goal_handle) {
-        RCLCPP_ERROR(node_->get_logger(), "Goal was rejected by server");
-        goal_accept_ = false;
-        return;
-    }
-    goal_accept_ = true;
-    if(goal_accept_)
-    {
-        result_callback();
-    }
-}
+    // using namespace std::placeholders;
 
-bool UniversalActionClient::send_request(std::string task_string)
-{
-    goal_done_ = false;
-    auto goal_msg = StringTask::Goal();
-    auto goal_msg2 = StringTask::Goal();
-    goal_msg.task_s = task_string;
-    goal_msg2.task_s = "6";
+    // this->timer_->cancel();
+
+    // this->goal_done_ = false;
+
+    if (!this->action_client_)
+    {
+        RCLCPP_ERROR(node_->get_logger(), "Action client not initialized");
+    }
+
+    if (!this->action_client_->wait_for_action_server(std::chrono::seconds(10)))
+    {
+        RCLCPP_ERROR(node_->get_logger(), "Action server not available after waiting");
+        // this->goal_done_ = true;
+        return false;
+    }
+
+    auto goal = StringTask::Goal();
+    goal.task_s = request_string;
+
     RCLCPP_INFO(node_->get_logger(), "Sending goal");
-    goal_handle_future = action_client_->async_send_goal(goal_msg, std::bind(&UniversalActionClient::feedback_callback, this, std::placeholders::_1, std::placeholders::_2));
-    goal_handle_future = action_client_->async_send_goal(goal_msg2, std::bind(&UniversalActionClient::feedback_callback, this, std::placeholders::_1, std::placeholders::_2));
-    spinGoalThread = std::thread(&UniversalActionClient::spin_goal_handle,this);
 
-    return goal_accept_;
+    auto send_goal_options = rclcpp_action::Client<StringTask>::SendGoalOptions();
+    send_goal_options.goal_response_callback =
+        std::bind(&UniversalActionClient::goal_response_callback, this, std::placeholders::_1);
+    send_goal_options.feedback_callback =
+        std::bind(&UniversalActionClient::feedback_callback, this, std::placeholders::_1, std::placeholders::_2);
+    send_goal_options.result_callback =
+        std::bind(&UniversalActionClient::result_callback, this, std::placeholders::_1);
+    auto goal_handle_future = this->action_client_->async_send_goal(goal, send_goal_options);
+
+    return true;
 }
-void UniversalActionClient::result_callback()
+
+void UniversalActionClient::goal_response_callback(std::shared_future<ClientGoalHandleStringTask::SharedPtr> future)
 {
-    result_future = goal_handle->async_result();
-    RCLCPP_INFO(node_->get_logger(), "Waiting for result");
-
-    if (rclcpp::spin_until_future_complete(node_, result_future) !=
-        rclcpp::executor::FutureReturnCode::SUCCESS)
+    auto goal_handle = future.get();
+    if (!goal_handle)
     {
-        RCLCPP_ERROR(node_->get_logger(), "get result call failed :(");
-        return;
+        RCLCPP_ERROR(node_->get_logger(), "Goal was rejected by server");
     }
-    result = result_future.get();
+    else
+    {
+        RCLCPP_INFO(node_->get_logger(), "Goal accepted by server, waiting for result");
+    }
+}
 
-    switch(result.code) {
-      case rclcpp_action::ResultCode::SUCCEEDED:
-        goal_done_ = true;
+void UniversalActionClient::feedback_callback(
+    ClientGoalHandleStringTask::SharedPtr,
+    const std::shared_ptr<const StringTask::Feedback> feedback)
+{
+    RCLCPP_INFO(
+        node_->get_logger(),
+        "Next number in sequence received: %s",
+        feedback->feedback_s);
+    feedback_ = feedback->feedback_s;
+}
+
+void UniversalActionClient::result_callback(const ClientGoalHandleStringTask::WrappedResult &result)
+{
+    // this->goal_done_ = true;
+    switch (result.code)
+    {
+    case rclcpp_action::ResultCode::SUCCEEDED:
         break;
-      case rclcpp_action::ResultCode::ABORTED:
+    case rclcpp_action::ResultCode::ABORTED:
         RCLCPP_ERROR(node_->get_logger(), "Goal was aborted");
         return;
-      case rclcpp_action::ResultCode::CANCELED:
+    case rclcpp_action::ResultCode::CANCELED:
         RCLCPP_ERROR(node_->get_logger(), "Goal was canceled");
         return;
-      default:
+    default:
         RCLCPP_ERROR(node_->get_logger(), "Unknown result code");
         return;
     }
-    RCLCPP_INFO(node_->get_logger(), "result received");
-    result_ = result.response->result_s;
-}
 
-std::string UniversalActionClient::get_result()
-{
-//    std::cout << "ACTIONLIB SERVER RESULT: " << result_ << std::endl;
-    return result_;
+    RCLCPP_INFO(node_->get_logger(), "Result received");
+    // for (auto number : result.result->)
+    // {
+    //     RCLCPP_INFO(node_->get_logger(), "%" PRId64, number);
+    // }
+    // result.result->result_s;
+    result_ = result.result->result_s;
+    handle_response();
 }

@@ -8,10 +8,10 @@
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
-class ITRIQ600ROS1Bridge:public UniversalActionlibServer
+class ITRIQ600ROS1Bridge:public UniversalActionServer
 {
 public:
-    ITRIQ600ROS1Bridge(string action_name): UniversalActionlibServer(action_name)
+    ITRIQ600ROS1Bridge(string node_name, string action_name): UniversalActionServer(node_name, action_name)
     {
         action_name_ = action_name;
         movebase_ac_ = new MoveBaseClient("Libra/move_base", true);
@@ -104,15 +104,15 @@ int main(int argc, char ** argv)
 
     // ROS2
     rclcpp::init(argc, argv);
-    UniversalActionlibServer *uni_actionlib_server_ptr;
-    ITRIQ600ROS1Bridge q600_ROS1_bridge_server("test");
+    UniversalActionServer *uni_actionlib_server_ptr;
+    ITRIQ600ROS1Bridge q600_ROS1_bridge_server("test_node","test");
     uni_actionlib_server_ptr = &q600_ROS1_bridge_server;
     uni_actionlib_server_ptr->init();
     
-    while (ros::ok())
-    {
-      uni_actionlib_server_ptr->call_spin_once();
-    }
+    // while (ros::ok())
+    // {
+    //   uni_actionlib_server_ptr->call_spin_once();
+    // }
     rclcpp::shutdown();
     return 0;
 }
